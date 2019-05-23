@@ -1,19 +1,24 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
+    scalar Upload
+
     type Post {
         _id: ID!
         Title: String!
         Comment: String!
-        Path: String!
         Tag: [String!]
+        path: String!
+        filename: String!
+        mimetype: String!
+        encoding: String!
     }
 
     input PostInput {
         Title: String!
         Comment: String!
-        Path: String!
         Tag: [String!]
+        File: Upload!
     }
 
     type User {
