@@ -1,39 +1,47 @@
+const { GraphQLUpload } = require('apollo-upload-server');
+
 const Post = require('../../models/Post');
+const User = require('../../models/User');
+const { transformPost } = require('./merge');
 
 module.exports = {
+    Upload: GraphQLUpload,
     posts: async () => {
         try {
             const posts = await Post.find();
             return posts.map(post => {
-                return {
-                    ...post._doc,
-                    _id: post._id
-                }
+                return transformPost(post);
             });
         }
         catch(err) {
             throw err;
         }
     },
-    createPost: async args => {
-        try {
-            const post = new Post({
-                Title: args.postInput.Title,
-                Comment: args.postInput.Comment,
-                Path: args.postInput.Path,
-                Tag: args.postInput.Tag
-            });
+    createPost: async (args, {file}) => {
+        console.log(args);
+        console.log(file);
 
+        const post = new Post({
+            ...args.postInput,
+            Author: "5ce66962d34ed4105481b4c7"
+        });
+        let createdPost;
+        try {
             const result = await post.save();
-            return {
-                ...result._doc,
-                _id: result.id
+            createdPost = transformPost(result);
+            const Author = await User.findById("5ce66962d34ed4105481b4c7");
+
+            if(!Author) {
+                throw new Error('User not found');
             }
+            Author.UploadPost.push(post);
+            await Author.save();
+
+            return createdPost;
         }
         catch(err) {
             throw err;
         }
+        
     }
-
-    //createPost(postInput: PostInput): Post!
 }

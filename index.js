@@ -1,17 +1,26 @@
 const express = require('express');
 const graphQlHttp = require('express-graphql');
 const mongoose = require('mongoose');
+const { apolloUploadExpress } = require('apollo-upload-server')
 
 const graphQlSchema = require('./graphql/Schema/index');
-const graphQlResolver = require('./graphql/Resolver/Merge');
+const graphQlResolver = require('./graphql/Resolver/index');
 
 const app = express();
 
-app.use('/api', graphQlHttp({
-    schema: graphQlSchema,
-    rootValue: graphQlResolver,
-    graphiql: true
-}));
+app.use('/api', 
+    express.json(),
+    apolloUploadExpress({
+        maxFiles: 1,
+        maxFileSize: 50*1024*1024,
+        uploadDir: './public/upload'
+    }),
+    graphQlHttp({
+        schema: graphQlSchema,
+        rootValue: graphQlResolver,
+        graphiql: true
+    })
+);
 
 mongoose.connect('mongodb+srv://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASSWORD + '@node-rest-shop-zqnku.mongodb.net/' + process.env.MONGO_DB + '?retryWrites=true', 
 { useNewUrlParser: true})

@@ -1,24 +1,28 @@
 const { buildSchema } = require('graphql');
 
 module.exports = buildSchema(`
-    scalar Upload
-
     type Post {
         _id: ID!
         Title: String!
         Comment: String!
         Tag: [String!]
-        path: String!
-        filename: String!
-        mimetype: String!
-        encoding: String!
+        Filepath: String!
+        Filename: String!
+        Filetype: String!
+        Filesize: Int!
+        Author: User!
+        createdAt: String!
+        updatedAt: String!
     }
 
-    input PostInput {
+    input Upload {
         Title: String!
         Comment: String!
         Tag: [String!]
-        File: Upload!
+        Filename: String!
+        Filetype: String!
+        Filesize: Int!
+        Filepath: String!
     }
 
     type User {
@@ -46,7 +50,7 @@ module.exports = buildSchema(`
     }
 
     type RootMutation {
-        createPost(postInput: PostInput): Post!
+        createPost(postInput: Upload): Post
         signUp(userInput: UserInput): User!
     }
 
