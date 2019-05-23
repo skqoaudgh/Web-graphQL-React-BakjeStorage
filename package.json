@@ -1,0 +1,23 @@
+{
+  "name": "web-bakjeboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skqoaudgh/Web-BakjeBoard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skqoaudgh/Web-BakjeBoard/issues"
+  },
+  "homepage": "https://github.com/skqoaudgh/Web-BakjeBoard#readme",
+  "dependencies": {
+    "express": "^4.17.0"
+  }
+}
