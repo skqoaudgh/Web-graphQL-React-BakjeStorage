@@ -6,7 +6,10 @@ const { transformPost } = require('./merge');
 
 module.exports = {
     Upload: GraphQLUpload,
-    posts: async () => {
+    posts: async (req) => {
+        if(!req.isAuth) {
+            throw new Error('Unauthorization!');
+        }
         try {
             const posts = await Post.find();
             return posts.map(post => {
@@ -17,7 +20,10 @@ module.exports = {
             throw err;
         }
     },
-    createPost: async (args, {file}) => {
+    createPost: async (args, {file}, req) => {
+        if(!req.isAuth) {
+            throw new Error('Unauthorization!');
+        }       
         console.log(args);
         console.log(file);
 

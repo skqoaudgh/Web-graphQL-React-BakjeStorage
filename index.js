@@ -5,8 +5,11 @@ const { apolloUploadExpress } = require('apollo-upload-server')
 
 const graphQlSchema = require('./graphql/Schema/index');
 const graphQlResolver = require('./graphql/Resolver/index');
+const isAuth = require('./middleware/is-auth');
 
 const app = express();
+
+app.use(isAuth);
 
 app.use('/api', 
     express.json(),
