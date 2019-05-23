@@ -1,6 +1,6 @@
-const { BuildSchema } = require('graphql');
+const { buildSchema } = require('graphql');
 
-module.exports = BuildSchema(`
+module.exports = buildSchema(`
     type Post {
         _id: ID!
         Title: String!
