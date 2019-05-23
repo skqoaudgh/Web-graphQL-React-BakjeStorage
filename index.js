@@ -3,11 +3,13 @@ const graphQlHttp = require('express-graphql');
 const mongoose = require('mongoose');
 
 const graphQlSchema = require('./graphql/Schema/index');
+const graphQlResolver = require('./graphql/Resolver/Merge');
 
 const app = express();
 
 app.use('/api', graphQlHttp({
-    Schema: graphQlSchema,
+    schema: graphQlSchema,
+    rootValue: graphQlResolver,
     graphiql: true
 }));
 
