@@ -27,14 +27,16 @@
 
 .mainNav__Leftside input {
     outline: none;
+    border-radius: 5px;
+    border: none;
 }
 
 .mainNav__Leftside button {
     position: relative;
     top: 1px;
-    left: -43px;
+    left: -40px;
     outline: none;
-    height: 1.6rem;
+    height: 1.75rem;
 }
 
 .mainNav__Rightside {
@@ -51,8 +53,19 @@
     align-items: center;
 }
 
-.mainNav__Rightside li {
+.mainNav__Rightside a {
     margin: 2rem;
+    padding: 0 1rem;
     color: white;
+    font: inherit;
     font-weight: bold;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.mainNav__Rightside a:hover {
+    background: white;
+    color: #dc143c;
+    border-radius: 5px;
 }
