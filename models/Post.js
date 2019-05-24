@@ -15,22 +15,10 @@ const postSchema = new Schema({
         type: String,
         required: false
     }], 
-    Filepath: {
+    Filedata: {
         type: String,
         required: true
     },
-    Filename: {
-        type: String,
-        required: true
-    },
-    Filetype: {
-        type: String,
-        required: true
-    },
-    Filesize: {
-        type: Number,
-        required: true
-    },    
     Author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

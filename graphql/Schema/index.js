@@ -6,23 +6,17 @@ module.exports = buildSchema(`
         Title: String!
         Comment: String!
         Tag: [String!]
-        Filepath: String!
-        Filename: String!
-        Filetype: String!
-        Filesize: Int!
+        Filedata: String!
         Author: User!
         createdAt: String!
         updatedAt: String!
     }
 
-    input Upload {
+    input PostInput {
         Title: String!
         Comment: String!
         Tag: [String!]
-        Filename: String!
-        Filetype: String!
-        Filesize: Int!
-        Filepath: String!
+        Filedata: String!
     }
 
     type User {
@@ -50,7 +44,7 @@ module.exports = buildSchema(`
     }
 
     type RootMutation {
-        createPost(postInput: Upload): Post
+        createPost(postInput: PostInput): Post
         signUp(userInput: UserInput): User!
     }
 

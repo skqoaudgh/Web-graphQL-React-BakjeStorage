@@ -1,11 +1,8 @@
-const { GraphQLUpload } = require('apollo-upload-server');
-
 const Post = require('../../models/Post');
 const User = require('../../models/User');
 const { transformPost } = require('./merge');
 
 module.exports = {
-    Upload: GraphQLUpload,
     posts: async (req) => {
         if(!req.isAuth) {
             throw new Error('Unauthorization!');
