@@ -5,14 +5,14 @@ const User = require('../../models/User');
 
 module.exports = {
     signUp: async args => {
-        const isExisting = await User.findOne({Nickname:args.userInput.Nickname});
+        const isExisting = await User.findOne({UserID:args.userInput.UserID});
         if(isExisting) {
             throw new Error('User already exist.');
         }
 
         const hashedPassword = await bcrypt.hash(args.userInput.Password, 12);
         const user = new User({
-            Nickname: args.userInput.Nickname,
+            UserID: args.userInput.UserID,
             Password: hashedPassword,
             Name: args.userInput.Name
         });
@@ -23,8 +23,8 @@ module.exports = {
             Password: null
         }
     },
-    login: async ({ Nickname, Password }) => {
-        const existingUser = await User.findOne({Nickname: Nickname});
+    login: async ({ UserID, Password }) => {
+        const existingUser = await User.findOne({UserID: UserID});
         if(!existingUser) {
             throw new Error('User not exist.');
         }
@@ -34,7 +34,7 @@ module.exports = {
             throw new Error('Password incorrect');
         }
 
-        const token = jwt.sign({UserId: existingUser.id, Nickname: existingUser.Nickname, Name: existingUser.Name}, 'bakjestoragesecretkeybaby', {
+        const token = jwt.sign({UserId: existingUser.id, UserID: existingUser.UserID, Name: existingUser.Name}, 'bakjestoragesecretkeybaby', {
             expiresIn: '1h'
         });
         return {

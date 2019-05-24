@@ -5,7 +5,6 @@ module.exports = buildSchema(`
         _id: ID!
         Title: String!
         Comment: String!
-        Tag: [String!]
         Filedata: String!
         Author: User!
         createdAt: String!
@@ -15,13 +14,12 @@ module.exports = buildSchema(`
     input PostInput {
         Title: String!
         Comment: String!
-        Tag: [String!]
         Filedata: String!
     }
 
     type User {
         _id: ID!
-        ID: String!
+        UserID: String!
         Password: String
         Name: String!
     }
@@ -33,14 +31,14 @@ module.exports = buildSchema(`
     }
 
     input UserInput {
-        ID: String!
+        UserID: String!
         Password: String!
         Name: String!
     }
 
     type RootQuery {
         posts: [Post!]!
-        login(ID: String!, Password: String!): AuthData!
+        login(UserID: String!, Password: String!): AuthData!
     }
 
     type RootMutation {

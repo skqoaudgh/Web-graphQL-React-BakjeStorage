@@ -11,10 +11,6 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    Tag: [{
-        type: String,
-        required: false
-    }], 
     Filedata: {
         type: String,
         required: true

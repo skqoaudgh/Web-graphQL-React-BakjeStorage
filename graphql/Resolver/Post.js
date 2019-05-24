@@ -17,22 +17,21 @@ module.exports = {
             throw err;
         }
     },
-    createPost: async (args, {file}, req) => {
-        if(!req.isAuth) {
-            throw new Error('Unauthorization!');
-        }       
-        console.log(args);
-        console.log(file);
+    createPost: async (args, req) => {
+        // if(!req.isAuth) {
+        //     throw new Error('Unauthorization!');
+        // }       
 
         const post = new Post({
             ...args.postInput,
-            Author: "5ce66962d34ed4105481b4c7"
+            Author: "5ce7fbb9b7f31647749007b2"
         });
+        
         let createdPost;
         try {
             const result = await post.save();
             createdPost = transformPost(result);
-            const Author = await User.findById("5ce66962d34ed4105481b4c7");
+            const Author = await User.findById("5ce7fbb9b7f31647749007b2");
 
             if(!Author) {
                 throw new Error('User not found');
