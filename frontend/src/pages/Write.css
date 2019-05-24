@@ -1,0 +1,48 @@
+.write {
+    margin-top: 6rem;
+}
+
+.write h1,
+.write-Form {
+    color: #dc143c;
+    margin-left: 10%;
+    margin-bottom: 2rem;
+}
+
+.write-Form label {
+    cursor: pointer;
+}
+
+.write-Form input[type=text],
+.write-Form textarea {
+    width: 40rem;
+    border: 3px solid  #dc143c;
+    border-radius: 5px;
+    outline: none;
+ }
+
+.write-Form input[type="file"] {
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip:rect(0,0,0,0);
+}
+
+.write-Form label,
+.write-Form button {
+    outline: none;
+    background: #dc143c;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 1rem;
+}
+
+.write-Form button[type="submit"] {
+    margin-top: 7rem;
+}
