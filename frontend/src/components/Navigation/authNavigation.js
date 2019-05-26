@@ -8,6 +8,10 @@ class authNavigation extends Component {
 
     static contextType = AuthContext;
 
+    state = {
+        isLoginFail: false
+    }
+
     constructor(props) {
         super(props);
 
@@ -63,6 +67,7 @@ class authNavigation extends Component {
         })
         .catch(err => {
             console.log(err);
+            this.setState({isLoginFail: true});
         }); 
     }
 
@@ -76,14 +81,15 @@ class authNavigation extends Component {
                     <form onSubmit={this.submitHandler}>
                         <div className="authNav__form">
                             <label htmlFor="id">아이디</label>
-                            <input type="text" id="id" ref={this.idRef}></input>
+                            <input type="text" id="id" autoComplete="off" ref={this.idRef}></input>
                         </div>
                         <div className="authNav__form">
                             <label htmlFor="password">비밀번호</label>
                             <input type="password" id="password" ref={this.passwordRef}></input>
                         </div>
                         <div className="authNav__form">
-                            <button type="submit">로그인</button>
+                            <button type="submit" id="submut">로그인</button>
+                            <p style={{display: this.state.isLoginFail ? 'block' : 'none' }}>로그인에 실패했습니다.</p>
                         </div>
                     </form>
                 </div>

@@ -38,16 +38,23 @@
     margin: 0.5rem;
 }
 
-.authNav__form label {
+.authNav__form label,
+.authNav__form p {
     display: block;
     margin-bottom: 1px;
     color: white;
 }
 
+.authNav__form p {
+    position: relative;
+    top: -2.5rem;
+    font-size: 12pt;
+}
+
 .authNav__form button {
     height: 1.5rem;
     position: relative;
-    top: 1.5rem;
+    top: 1.4rem;
     outline: none;
     background: #ff345d;
     border: 1px solid black;
