@@ -31,11 +31,15 @@
 }
 
 .authNav__Rightside form {
-    display: flex;  
+    display: flex;
 }
 
 .authNav__form {
     margin: 0.5rem;
+}
+
+.authNav__form input {
+    outline: none;
 }
 
 .authNav__form label,

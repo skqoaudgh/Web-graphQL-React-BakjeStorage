@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 
+import AuthContext from '../Context/auth';
+
 import './Form.css';
 
 class Write extends Component {
+
+    static contextType = AuthContext;
+
     constructor(props) {
         super(props);
 
@@ -33,12 +38,12 @@ class Write extends Component {
 
         const title = this.titleRef.current.value;
         const comment = this.commentRef.current.value;
-        const upload = this.imageData;
 
-        if(title.trim().length === 0 || comment.trim().length === 0 || upload === null)
+        if(title.trim().length === 0 || comment.trim().length === 0 || this.state.file === null)
             return;
 
         const encodedImage = await this.encodeBase64ImageFile(this.imageData);
+        const token = this.context.token;
 
         let requestBody = {
             query: `
@@ -62,7 +67,8 @@ class Write extends Component {
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                'Authorization': 'Bearer ' + token
             }
         })
         .then(res => {

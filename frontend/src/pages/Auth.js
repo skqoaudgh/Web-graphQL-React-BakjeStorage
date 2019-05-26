@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AuthNavigation from '../components/Navigation/authNavigation';
 import Modal from '../components/Modal/Modal';
-
+import Backdrop from '../components/Backdrop/Backdrop';
 import './Form.css';
 
 class Auth extends Component {
@@ -72,6 +72,7 @@ class Auth extends Component {
             this.idRef.current.value = "";
             this.nicknameRef.current.value = "";
             this.passwordRef.current.value = "";
+            this.passwordRef2.current.value = "";
             this.authCodeRef.current.value = "";
         })
         .catch(err => {
@@ -88,13 +89,15 @@ class Auth extends Component {
         return (
             <React.Fragment>
                 <AuthNavigation />
-                {this.state.isSignupFail && <Modal
+                {this.state.isSignupFail && <React.Fragment>
+                <Backdrop />
+                <Modal
                     title="회원가입 실패"
                     onConfirm={this.onConfirm}
                     canConfirm
                     confirmText="확인">
                         입력 정보를 다시 확인해주세요.
-                </Modal>}
+                </Modal></React.Fragment>}
                 {!this.state.isSignupFail && <div className="form-page">
                     <h1>새 게정 만들기</h1>
                     <h2>항상 지금처럼 무료로 즐기실 수 있습니다.</h2>

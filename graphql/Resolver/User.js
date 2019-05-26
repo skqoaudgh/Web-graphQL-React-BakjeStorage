@@ -38,7 +38,7 @@ module.exports = {
             throw new Error('Password incorrect');
         }
 
-        const token = jwt.sign({UserId: existingUser.id, UserID: existingUser.UserID, Nickname: existingUser.Nickname}, 'bakjestoragesecretkeybaby', {
+        const token = jwt.sign({id: existingUser.id, UserID: existingUser.UserID, Nickname: existingUser.Nickname}, 'bakjestoragesecretkeybaby', {
             expiresIn: '1h'
         });
         return {

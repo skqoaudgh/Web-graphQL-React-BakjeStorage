@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import MainNavigation from './components/Navigation/mainNavigation';
 import writePage from './pages/Write';
-import listPage from './pages/List';
+import postPage from './pages/Posts';
 import authPage from './pages/Auth';
 import AuthContext from './Context/auth';
 
@@ -43,12 +43,12 @@ class App extends Component {
           <main className="main-content">
             <Switch>
               {!this.state.token && <Redirect path="/" to="/auth" exact/>}
-              {this.state.token && <Redirect path="/" to="/list" exact/>}
-              {this.state.token && <Redirect path="/auth" to="/list" exact/>}
-              {!this.state.token && <Redirect path="/list" to="/auth" exact/>}
+              {this.state.token && <Redirect path="/" to="/post" exact/>}
+              {this.state.token && <Redirect path="/auth" to="/post" exact/>}
+              {!this.state.token && <Redirect path="/post" to="/auth" exact/>}
               {!this.state.token && <Redirect path="/write" to="/auth" exact/>}
               {!this.state.token && <Route path="/auth" component={authPage} />}
-              {this.state.token && <Route path="/list" component={listPage} />}
+              {this.state.token && <Route path="/post" component={postPage} />}
               {this.state.token && <Route path="/write" component={writePage} />}
             </Switch>
           </main>

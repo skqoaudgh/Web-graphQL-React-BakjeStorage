@@ -19,7 +19,7 @@ const mainNavigation = props => (
                     </div>
                     <div className="mainNav__Rightside">
                         <ul>
-                            <li><NavLink to="/list">홈</NavLink></li>
+                            <li><NavLink to="/post">홈</NavLink></li>
                             <li><NavLink to="/write">글쓰기</NavLink></li>
                             <li><button onClick={context.logout.bind(this)}>로그아웃</button></li>
                         </ul>

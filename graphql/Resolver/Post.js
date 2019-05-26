@@ -3,7 +3,7 @@ const User = require('../../models/User');
 const { transformPost } = require('./merge');
 
 module.exports = {
-    posts: async (req) => {
+    posts: async (args, req) => {
         if(!req.isAuth) {
             throw new Error('Unauthorization!');
         }
@@ -18,20 +18,20 @@ module.exports = {
         }
     },
     createPost: async (args, req) => {
-        // if(!req.isAuth) {
-        //     throw new Error('Unauthorization!');
-        // }       
+        if(!req.isAuth) {
+            throw new Error('Unauthorization!');
+        }       
 
         const post = new Post({
             ...args.postInput,
-            Author: "5ce7fbb9b7f31647749007b2"
+            Author: req.UserId
         });
-        
+
         let createdPost;
         try {
             const result = await post.save();
             createdPost = transformPost(result);
-            const Author = await User.findById("5ce7fbb9b7f31647749007b2");
+            const Author = await User.findById(req.UserId);
 
             if(!Author) {
                 throw new Error('User not found');
