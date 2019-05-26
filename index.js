@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use(isAuth);
+app.use(express.json({limit: '50mb'}));
 
 app.use('/api', graphQlHttp({
     schema: graphQlSchema,

@@ -62,3 +62,8 @@
 .form-control button[type="submit"] {
     margin-top: 7rem;
 }
+
+.form-control img {
+    max-width: 40rem;
+    max-height: 40rem;
+}
