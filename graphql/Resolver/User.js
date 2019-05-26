@@ -10,11 +10,15 @@ module.exports = {
             throw new Error('User already exist.');
         }
 
+        if(args.userInput.Authcode !== process.env.AUTH_CODE) {
+            throw new Error('Auth Code incorrect!');
+        } 
+
         const hashedPassword = await bcrypt.hash(args.userInput.Password, 12);
         const user = new User({
             UserID: args.userInput.UserID,
             Password: hashedPassword,
-            Name: args.userInput.Name
+            Nickname: args.userInput.Nickname
         });
         const result = await user.save();
         return {
@@ -34,7 +38,7 @@ module.exports = {
             throw new Error('Password incorrect');
         }
 
-        const token = jwt.sign({UserId: existingUser.id, UserID: existingUser.UserID, Name: existingUser.Name}, 'bakjestoragesecretkeybaby', {
+        const token = jwt.sign({UserId: existingUser.id, UserID: existingUser.UserID, Nickname: existingUser.Nickname}, 'bakjestoragesecretkeybaby', {
             expiresIn: '1h'
         });
         return {

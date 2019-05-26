@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Write.css';
+import './Form.css';
 
 class Write extends Component {
     constructor(props) {
@@ -13,10 +13,6 @@ class Write extends Component {
         this.state = {
             file: null
         }
-    }
-
-    componentDidMount() {
-
     }
 
     encodeBase64ImageFile = (image) => {
@@ -107,24 +103,24 @@ class Write extends Component {
 
     render() {
         return (
-            <div className="write">
+            <div className="form-page">
                 <h1>박제자료 업로드</h1>
                 <form onSubmit={this.submitHandler}>
-                    <div className="write-Form">
-                        <input type="text" placeholder="제목을 입력하세요" style={{height:'2rem'}} ref={this.titleRef} />
+                    <div className="form-control">
+                        <input type="text" placeholder="제목을 입력하세요" ref={this.titleRef} />
                     </div>
-                    <div className="write-Form">
+                    <div className="form-control">
                         <textarea rows="10" ref={this.commentRef}/>
                     </div>   
-                    <div className="write-Form">
+                    <div className="form-control">
                         <label htmlFor="image">사진</label>
                         <input type="file" id="image" accept="image/*" multiple={false} ref={this.uploadRef} onChange={this.imagePreviewHandler.bind(this)}></input>
                     </div>
-                    <div className="write-Form">
+                    <div className="form-control">
                         <img src={this.state.file} alt="" />
                         {this.state.file && <p><button onClick={this.imageDeleteHandler}>삭제</button></p>}
                     </div>    
-                    <div className="write-Form">
+                    <div className="form-control">
                         <button type="submit">확인</button>
                     </div>            
                 </form>

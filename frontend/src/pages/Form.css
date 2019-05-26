@@ -1,27 +1,43 @@
-.write {
+.form-page {
     margin-top: 6rem;
 }
 
-.write h1,
-.write-Form {
+.form-page h1,
+.form-control {
     color: #dc143c;
     margin-left: 10%;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
-.write-Form label {
+.form-page h2 {
+    color: black;
+    margin-left: 10%;
+    margin-bottom: 2rem;
+    font-size: 14pt;
+}
+
+.form-control label {
     cursor: pointer;
 }
 
-.write-Form input[type=text],
-.write-Form textarea {
+
+.form-control input[type=text],
+.form-control input[type=password] {
+    height: 2rem;
+}
+
+.form-control input[type=text],
+.form-control input[type=password],
+.form-control textarea {
     width: 40rem;
     border: 3px solid  #dc143c;
     border-radius: 5px;
     outline: none;
+    font-size: 14pt;
+    margin-right: 0.5rem;
  }
 
-.write-Form input[type="file"] {
+.form-control input[type="file"] {
     position: absolute; 
     width: 1px; 
     height: 1px; 
@@ -31,8 +47,8 @@
     clip:rect(0,0,0,0);
 }
 
-.write-Form label,
-.write-Form button {
+.form-control label,
+.form-control button {
     outline: none;
     background: #dc143c;
     border: none;
@@ -43,6 +59,6 @@
     padding: 0 1rem;
 }
 
-.write-Form button[type="submit"] {
+.form-control button[type="submit"] {
     margin-top: 7rem;
 }

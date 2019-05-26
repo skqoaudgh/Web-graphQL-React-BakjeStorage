@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MainNavigation from './components/Navigation/mainNavigation';
 import writePage from './pages/Write';
 import listPage from './pages/List';
+import authPage from './pages/Auth';
 
 import './App.css';
 
@@ -14,6 +15,7 @@ class App extends Component {
         <MainNavigation />
         <main className="main-content">
           <Switch>
+            <Route path="/auth" component={authPage} />
             <Route path="/list" component={listPage} />
             <Route path="/write" component={writePage} />
           </Switch>

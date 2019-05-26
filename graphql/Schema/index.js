@@ -21,7 +21,7 @@ module.exports = buildSchema(`
         _id: ID!
         UserID: String!
         Password: String
-        Name: String!
+        Nickname: String!
     }
 
     type AuthData {
@@ -33,7 +33,8 @@ module.exports = buildSchema(`
     input UserInput {
         UserID: String!
         Password: String!
-        Name: String!
+        Nickname: String!
+        Authcode: String!
     }
 
     type RootQuery {
