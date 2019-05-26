@@ -5,7 +5,7 @@ import MainNavigation from './components/Navigation/mainNavigation';
 import writePage from './pages/Write';
 import listPage from './pages/List';
 import authPage from './pages/Auth';
-import AuthContext from './components/Context/auth';
+import AuthContext from './Context/auth';
 
 import './App.css';
 
@@ -22,14 +22,22 @@ class App extends Component {
       token: token
     })
   }
-         
+  
+  logout = () => {
+    this.setState({
+      userId: null,
+      token: null
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
         <AuthContext.Provider value={{
           token: this.state.token,
           userId: this.state.userId,
-          login: this.login
+          login: this.login,
+          logout: this.logout
         }}>
           {this.state.token && <MainNavigation />}
           <main className="main-content">
@@ -37,6 +45,8 @@ class App extends Component {
               {!this.state.token && <Redirect path="/" to="/auth" exact/>}
               {this.state.token && <Redirect path="/" to="/list" exact/>}
               {this.state.token && <Redirect path="/auth" to="/list" exact/>}
+              {!this.state.token && <Redirect path="/list" to="/auth" exact/>}
+              {!this.state.token && <Redirect path="/write" to="/auth" exact/>}
               {!this.state.token && <Route path="/auth" component={authPage} />}
               {this.state.token && <Route path="/list" component={listPage} />}
               {this.state.token && <Route path="/write" component={writePage} />}

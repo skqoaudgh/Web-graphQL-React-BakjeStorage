@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import AuthContext from '../Context/auth';
+import AuthContext from '../../Context/auth';
 
 import './authNavigation.css';
 

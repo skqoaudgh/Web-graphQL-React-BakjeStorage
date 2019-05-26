@@ -53,7 +53,8 @@
     align-items: center;
 }
 
-.mainNav__Rightside a {
+.mainNav__Rightside a,
+.mainNav__Rightside button {
     margin: 1rem;
     padding: 0 1rem;
     color: white;
@@ -62,9 +63,12 @@
     text-decoration: none;
     background: transparent;
     cursor: pointer;
+    border: none;
+    outline: none;
 }
 
-.mainNav__Rightside a:hover {
+.mainNav__Rightside a:hover,
+.mainNav__Rightside button:hover {
     background: white;
     color: #dc143c;
     border-radius: 5px;
