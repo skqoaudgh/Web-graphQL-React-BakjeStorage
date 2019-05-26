@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
+import AuthContext from '../Context/auth';
+
 import './authNavigation.css';
 
 class authNavigation extends Component {
+
+    static contextType = AuthContext;
 
     constructor(props) {
         super(props);
@@ -17,7 +21,49 @@ class authNavigation extends Component {
         const id = this.idRef.current.value;
         const password = this.passwordRef.current.value;
 
-        console.log(id, password);
+        if(id.trim().length === 0 || password.trim().length === 0)
+            return;
+
+        let requestBody = {
+            query: `
+                query Login($id: String!, $password: String!) {
+                    login(UserID: $id, Password: $password) {
+                        UserId
+                        token
+                        tokenExpiration
+                    }
+                }
+            `,
+            variables: {
+                id: id,
+                password: password
+            }
+        }
+        fetch('http://localhost:8000/api', {
+            method: 'POST',
+            body: JSON.stringify(requestBody),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        .then(res => {
+            if(res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed!');
+            }
+            return res.json();
+        })
+        .then(resData => {
+            if(resData.data.login.token) {
+                this.context.login(
+                    resData.data.login.UserId,
+                    resData.data.login.token,
+                    resData.data.login.tokenExpiration
+                );
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        }); 
     }
 
     render() {
