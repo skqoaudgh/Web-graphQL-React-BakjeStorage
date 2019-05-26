@@ -14,9 +14,7 @@ class Posts extends Component {
     static contextType = AuthContext;
 
     componentDidMount() {
-        console.log('mount 시작');
         this.fetchPosts();
-        console.log('mount 끝');
     }
 
     componentWillUnmount() {
@@ -24,7 +22,6 @@ class Posts extends Component {
     }
 
     fetchPosts = () => {
-        console.log('fetch 시작');
         this.setState({isLoading: true});
         const requestBody = {
             query: `
@@ -44,8 +41,7 @@ class Posts extends Component {
                     }
                 }
             `
-        };     
-        console.log('fetch 직전');   
+        };      
         fetch('http://localhost:8000/api', {
             method: 'POST',
             body: JSON.stringify(requestBody),
@@ -65,7 +61,6 @@ class Posts extends Component {
             if(this.isActive) {
                 this.setState({posts: posts, isLoading: false});
             }
-            console.log('fetch 끝');   
         })
         .catch(err => {
             console.log(err);

@@ -100,7 +100,6 @@ class Write extends Component {
     }
 
     imageDeleteHandler = () => {
-        console.log(this.state.file);
         this.setState({
             file: null
         });
