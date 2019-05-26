@@ -1,0 +1,63 @@
+.auth-Navigation {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5rem;
+    background: #dc143c;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.authNav__Leftside {
+    display: flex;
+    margin-left: 10%;
+    align-items: center;
+}
+
+.authNav__Leftside h1 {
+    margin: 0;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.authNav__Rightside {
+    margin-right: 10%;
+    align-items: center;   
+}
+
+.authNav__Rightside form {
+    display: flex;  
+}
+
+.authNav__form {
+    margin: 0.5rem;
+}
+
+.authNav__form label {
+    display: block;
+    margin-bottom: 1px;
+    color: white;
+}
+
+.authNav__form button {
+    height: 1.5rem;
+    position: relative;
+    top: 1.5rem;
+    outline: none;
+    background: #ff345d;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0 1rem;
+}
+
+.authNav__form button:hover {
+    background: #ca0c32;
+}

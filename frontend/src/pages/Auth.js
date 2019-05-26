@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import AuthNavigation from '../components/Navigation/authNavigation';
+
 import './Form.css';
 
 class Auth extends Component {
@@ -72,29 +74,32 @@ class Auth extends Component {
 
     render() {
         return (
-            <div className="form-page">
-                <h1>새 게정 만들기</h1>
-                <h2>항상 지금처럼 무료로 즐기실 수 있습니다.</h2>
-                <form onSubmit={this.submitHandler}>
-                    <div className="form-control">
-                        <input type="text" placeholder="아이디" style={{width:'19.1rem'}} ref={this.idRef}></input>
-                        <input type="text" placeholder="닉네임" style={{width:'20rem'}} ref={this.nicknameRef}></input>
-                    </div>
-                    <div className="form-control">
+            <React.Fragment>
+                <AuthNavigation />
+                <div className="form-page">
+                    <h1>새 게정 만들기</h1>
+                    <h2>항상 지금처럼 무료로 즐기실 수 있습니다.</h2>
+                    <form onSubmit={this.submitHandler}>
+                        <div className="form-control">
+                            <input type="text" placeholder="아이디" style={{width:'19.1rem'}} ref={this.idRef}></input>
+                            <input type="text" placeholder="닉네임" style={{width:'20rem'}} ref={this.nicknameRef}></input>
+                        </div>
+                        <div className="form-control">
 
-                    </div>
-                    <div className="form-control">
-                        <input type="password" placeholder="새 비밀번호" style={{width:'19.1rem'}} ref={this.passwordRef}></input>
-                        <input type="password" placeholder="새 비밀번호 확인" style={{width:'20rem'}} ref={this.passwordRef2}></input>
-                    </div>
-                    <div className="form-control">
-                        <input type="text" placeholder="인증코드" ref={this.authCodeRef}></input>
-                    </div>
-                    <div className="form-control">
-                        <button type="submit">가입하기</button>
-                    </div>
-                </form>
-            </div>
+                        </div>
+                        <div className="form-control">
+                            <input type="password" placeholder="새 비밀번호" style={{width:'19.1rem'}} ref={this.passwordRef}></input>
+                            <input type="password" placeholder="새 비밀번호 확인" style={{width:'20rem'}} ref={this.passwordRef2}></input>
+                        </div>
+                        <div className="form-control">
+                            <input type="text" placeholder="인증코드" ref={this.authCodeRef}></input>
+                        </div>
+                        <div className="form-control">
+                            <button type="submit">가입하기</button>
+                        </div>
+                    </form>
+                </div>
+            </React.Fragment>
         );
     }
 }
