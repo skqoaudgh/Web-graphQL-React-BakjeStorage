@@ -30,6 +30,21 @@ class App extends Component {
     })
   }
 
+  componentWillMount() {
+    const savedToken = localStorage.savedToken;
+    const savedUserId = localStorage.savedUserId;
+    if(savedToken !== 'null' && savedUserId !== 'null') {
+      this.setState({userId: savedUserId, token: savedToken})
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.token !== this.state.token && prevState.userId !== this.state.userId) {
+      localStorage.savedToken = this.state.token;
+      localStorage.savedUserId = this.state.userId;
+    }
+  }
+
   render() {
     return (
       <BrowserRouter>
