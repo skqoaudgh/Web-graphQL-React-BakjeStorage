@@ -62,7 +62,7 @@ class App extends Component {
           logout: this.logout,
           fetchEvent: this.state.fetchEvent
         }}>
-          {this.state.token && <MainNavigation />}
+          {this.state.token && <MainNavigation history={this.props.history}/>}
           <main className="main-content">
             <Switch>
               {!this.state.token && <Redirect path="/" to="/auth" exact/>}

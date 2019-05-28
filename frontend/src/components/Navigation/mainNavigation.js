@@ -19,12 +19,20 @@ const mainNavigation = (props) => (
                     </div>
                     <div className="mainNav__Rightside">
                         <ul>
-                            <li><NavLink to="/post">홈</NavLink></li>
+                            <li><NavLink to={{
+                                pathname:"/post",
+                                state: {
+                                    isSearching: false
+                                }
+                            }}>홈</NavLink></li>
                             <li><NavLink to="/write">글쓰기</NavLink></li>
-                            <li><button onClick={() => (
-                                props.history.push('/post'), 
-                                context.fetchEvent.bind(this,{id:context.userId})                                 
-                            )}>마이페이지</button></li>
+                            <li><NavLink to={{
+                                pathname:"/post",
+                                state: {
+                                    isSearching: true,
+                                    userId: context.userId
+                                }
+                            }}>마이페이지</NavLink></li>
                             <li><button onClick={context.logout.bind(this)}>로그아웃</button></li>
                         </ul>
                     </div>

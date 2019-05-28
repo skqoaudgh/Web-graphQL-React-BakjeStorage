@@ -9,7 +9,6 @@ class Posts extends Component {
     state = {
         posts: [],
         isLoading: false,
-        isSearching: false
     }
     isActive = true;
     static contextType = AuthContext;
@@ -23,8 +22,19 @@ class Posts extends Component {
         this.isActive = false;
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.location.state.isSearching !== this.props.location.state.isSearching) {
+            let args;
+            if(this.props.location.state.isSearching) {
+                args = {
+                    id: this.props.location.state.userId
+                }
+            }
+            this.fetchPosts(args);
+        }
+    }
+
     fetchPosts = (args) => {
-        console.log('111');
         this.setState({isLoading: true});
         const requestBody = {
             query: `
