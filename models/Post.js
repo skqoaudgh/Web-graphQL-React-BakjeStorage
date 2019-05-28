@@ -11,9 +11,9 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    Image: {
-        type: Schema.Types.ObjectId,
-        ref: 'Post'
+    Filedata: {
+        type: String,
+        required: true
     },
     Author: {
         type: Schema.Types.ObjectId,
