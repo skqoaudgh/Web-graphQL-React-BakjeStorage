@@ -8,20 +8,23 @@ class Posts extends Component {
 
     state = {
         posts: [],
-        isLoading: false
+        isLoading: false,
+        isSearching: false
     }
     isActive = true;
     static contextType = AuthContext;
 
     componentDidMount() {
         this.fetchPosts();
+        this.props.fetchEvent(this.fetchPosts);
     }
 
     componentWillUnmount() {
         this.isActive = false;
     }
 
-    fetchPosts = () => {
+    fetchPosts = (args) => {
+        console.log('111');
         this.setState({isLoading: true});
         const requestBody = {
             query: `
@@ -57,7 +60,11 @@ class Posts extends Component {
             return res.json();
         })
         .then(resData => {
-            const posts = resData.data.posts;
+            let posts = resData.data.posts;
+            if(args) {
+                posts = posts.filter(post => post.Author._id === args.id);
+            }
+
             if(this.isActive) {
                 this.setState({posts: posts, isLoading: false});
             }

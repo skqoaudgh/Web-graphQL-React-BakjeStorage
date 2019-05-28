@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import MainNavigation from './components/Navigation/mainNavigation';
-import writePage from './pages/Write';
-import postPage from './pages/Posts';
-import authPage from './pages/Auth';
+import WritePage from './pages/Write';
+import PostPage from './pages/Posts';
+import AuthPage from './pages/Auth';
 import AuthContext from './Context/auth';
 
 import './App.css';
@@ -13,7 +13,8 @@ class App extends Component {
 
   state = {
     userId: null,
-    token: null
+    token: null,
+    fetchEvent: (args) => {}
   }
 
   login = (UserId, token, tokenExpiration) => {
@@ -27,6 +28,12 @@ class App extends Component {
     this.setState({
       userId: null,
       token: null
+    })
+  }
+
+  fetchEvent = (func) => {
+    this.setState({
+      fetchEvent: func
     })
   }
 
@@ -52,7 +59,8 @@ class App extends Component {
           token: this.state.token,
           userId: this.state.userId,
           login: this.login,
-          logout: this.logout
+          logout: this.logout,
+          fetchEvent: this.state.fetchEvent
         }}>
           {this.state.token && <MainNavigation />}
           <main className="main-content">
@@ -62,9 +70,9 @@ class App extends Component {
               {this.state.token && <Redirect path="/auth" to="/post" exact/>}
               {!this.state.token && <Redirect path="/post" to="/auth" exact/>}
               {!this.state.token && <Redirect path="/write" to="/auth" exact/>}
-              {!this.state.token && <Route path="/auth" component={authPage} />}
-              {this.state.token && <Route path="/post" component={postPage} />}
-              {this.state.token && <Route path="/write" component={writePage} />}
+              {!this.state.token && <Route path="/auth" component={AuthPage} />}
+              {this.state.token && <Route path="/post" render={(props) => <PostPage {...props} fetchEvent={this.fetchEvent}/>}/>} 
+              {this.state.token && <Route path="/write" component={WritePage} />}
             </Switch>
           </main>
         </AuthContext.Provider>
