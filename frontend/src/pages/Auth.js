@@ -67,8 +67,6 @@ class Auth extends Component {
             return res.json();
         })
         .then(resData => {
-            console.log(resData);
-            
             this.idRef.current.value = "";
             this.nicknameRef.current.value = "";
             this.passwordRef.current.value = "";
@@ -76,7 +74,6 @@ class Auth extends Component {
             this.authCodeRef.current.value = "";
         })
         .catch(err => {
-            console.log(err);
             this.setState({isSignupFail: true});
         });           
     }
