@@ -8,7 +8,7 @@ module.exports = {
             throw new Error('Unauthorization!');
         }
         try {
-            const posts = await Post.find().sort({"createdAt":-1});
+            const posts = await Post.find();
             return posts.map(post => {
                 return transformPost(post);
             });

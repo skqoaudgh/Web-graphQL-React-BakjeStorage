@@ -9,12 +9,15 @@ class Posts extends Component {
     state = {
         posts: [],
         isLoading: false,
+        isRending: false
     }
     isActive = true;
     static contextType = AuthContext;
 
     componentDidMount() {
-        this.fetchPosts();
+        if(!this.state.isRending) {
+            this.fetchPosts();
+        }
         this.props.fetchEvent(this.fetchPosts);
     }
 
@@ -22,15 +25,16 @@ class Posts extends Component {
         this.isActive = false;
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.location.state.isSearching !== this.props.location.state.isSearching) {
-            let args;
-            if(this.props.location.state.isSearching) {
+    componentWillReceiveProps(nextProps){
+        let args;
+        if(nextProps.location.state !== undefined) {
+            if(nextProps.location.state.isSearching) {
                 args = {
-                    id: this.props.location.state.userId
+                    id: nextProps.location.state.userId
                 }
             }
             this.fetchPosts(args);
+            this.setState({isRending: true});
         }
     }
 
@@ -76,6 +80,9 @@ class Posts extends Component {
             }
 
             if(this.isActive) {
+                posts.sort((a,b) => {
+                    return b.createdAt.toString() - a.createdAt.toString()
+                })
                 this.setState({posts: posts, isLoading: false});
             }
         })
