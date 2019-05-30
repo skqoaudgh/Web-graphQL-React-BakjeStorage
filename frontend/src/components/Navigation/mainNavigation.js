@@ -5,6 +5,12 @@ import AuthContext from '../../Context/auth';
 
 import './mainNavigation.css';
 
+const activeStyle = {
+    color: 'white',
+    background: '#a50928',
+    borderRadius: '5px'
+}
+
 const mainNavigation = (props) => (
     <AuthContext.Consumer>
         {(context) => {
@@ -24,15 +30,15 @@ const mainNavigation = (props) => (
                                 state: {
                                     isSearching: false
                                 }
-                            }}>홈</NavLink></li>
-                            <li><NavLink to="/write">글쓰기</NavLink></li>
+                            }} strict activeStyle={activeStyle} exact>홈</NavLink></li>
+                            <li><NavLink to="/write" activeStyle={activeStyle} exact>글쓰기</NavLink></li>
                             <li><NavLink to={{
-                                pathname:"/post",
+                                pathname:"/post/",
                                 state: {
                                     isSearching: true,
                                     userId: context.userId
                                 }
-                            }}>마이페이지</NavLink></li>
+                            }} strict activeStyle={activeStyle} exact>마이페이지</NavLink></li>
                             <li><button onClick={context.logout.bind(this)}>로그아웃</button></li>
                         </ul>
                     </div>
