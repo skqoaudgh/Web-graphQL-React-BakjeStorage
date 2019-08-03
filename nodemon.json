@@ -1,8 +1,0 @@
-{
-    "env": {
-        "MONGO_USER": "Cada",
-        "MONGO_PASSWORD": "asd123",
-        "MONGO_DB": "BakjeStorage",
-        "AUTH_CODE": "JJHJ93"
-    }
-}
